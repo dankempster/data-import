@@ -70,7 +70,7 @@ class PdoWriter implements Writer, FlushableWriter
                 $this->statement = $this->pdo->prepare(sprintf(
                     'INSERT INTO %s (%s) VALUES (%s)',
                     $this->tableName,
-                    implode(',', array_keys($item)),
+                    '`'.implode('`,`', array_keys($item)).'`',
                     substr(str_repeat('?,', count($item)), 0, -1)
                 ));
             } catch (\PDOException $e) {
